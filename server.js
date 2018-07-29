@@ -4,6 +4,9 @@ const path = require('path');
 const fs = require('fs');
 const socketIO = require('socket.io');
 const express = require('express');
+const react = require('react');
+const reactDOM = require('react-dom');
+
 
 const app = express();
 const server = http.Server(app);

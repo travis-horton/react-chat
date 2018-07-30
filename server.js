@@ -1,7 +1,5 @@
 #!/user/bin/env nodejs
 const http = require('http');
-const path = require('path');
-const fs = require('fs');
 const socketIO = require('socket.io');
 const express = require('express');
 const React = require('react');

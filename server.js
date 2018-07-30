@@ -4,13 +4,19 @@ const path = require('path');
 const fs = require('fs');
 const socketIO = require('socket.io');
 const express = require('express');
-const react = require('react');
-const reactDOM = require('react-dom');
+const React = require('react');
+const ReactDOM = require('react-dom');
 
 const app = express();
 const server = http.Server(app);
 const port = 8081;
 
+ReactDOM.render(
+	<h1>Hello, world!</h1>,
+	document.getElementById('root');
+)
+
+/*
 server.listen(port, function() {
 	console.log(`Chat server listening on ${port}`);
 });
@@ -101,3 +107,4 @@ function changeName(data, user) {
 	io.emit('message', messages.slice(0, 20));
 	io.emit('status', users.filter(user => user.active));
 }
+*/

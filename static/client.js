@@ -1,3 +1,21 @@
+class Hello extends React.Component {
+	render() {
+		return <h1>Hello from component</h1>;
+	}
+}
+
+function HelloFunc(props) {
+	return <h1>Hello from function component</h1>;
+}
+
+ReactDOM.render(
+	<HelloFunc />,
+	document.getElementById("root")
+);
+
+
+
+
 window.onload = init;
 
 function init() {

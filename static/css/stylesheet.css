@@ -13,16 +13,7 @@ body {
   height: max-content;
 }
 
-div {
-  background-color: var(--light-bg-color);
-  padding: 6px 10px;
-  border-radius: 16px 2px 16px 16px;
-  width: max-content;
-  margin: 10px auto;
-  text-align: center;
-}
-
-#users {
+.users {
   border: 1pt solid black;
   top: 0px;
   right: 2%;
@@ -33,7 +24,7 @@ div {
   margin: 0;
 }
 
-#buttons {
+.buttons {
   top: 0px;
   right: 38%;
   position: absolute;

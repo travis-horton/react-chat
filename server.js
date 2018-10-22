@@ -13,7 +13,11 @@ server.listen(port, function() {
 });
 
 app.use(express.static('static'));
+
 app.get('/index', function(req, res) {
+	res.sendFile(__dirname + '/index.html');
+});
+app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });
 

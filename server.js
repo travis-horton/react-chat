@@ -6,7 +6,7 @@ const express = require('express');
 
 const app = express();
 const server = http.Server(app);
-const port = 8081;
+const port = 80;
 
 server.listen(port, function() {
 	console.log(`Chat server listening on ${port}`);

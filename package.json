@@ -14,7 +14,7 @@
   "author": "kiddspazz",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "install": "^0.12.1",
     "npm": "^6.2.0",
     "react": "^16.4.1",

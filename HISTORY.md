@@ -4,6 +4,9 @@ Newest first.
 
 ## October 2026
 
+**react-chat #19: two unused building blocks removed** · [PR #19](https://github.com/travis-horton/react-chat/pull/19) · merged 26.1010.1230 · v1.0.3
+- Behind the scenes: took two borrowed building blocks off the project's list that the chat app never used (the package-installing tool itself, and an unrelated small code loader), almost certainly added by a typing slip. Known security warnings drop from 49 to 8, and the chat server answers, lets people join, and passes messages along exactly as before.
+
 **react-chat #17: the project's past, written down** · [PR #17](https://github.com/travis-horton/react-chat/pull/17) · merged 26.1010.1210 · v1.0.2
 - Behind the scenes: the history file now covers the whole project, from its first version to 26.1010, not just today's changes.
 

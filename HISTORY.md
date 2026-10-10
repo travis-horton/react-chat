@@ -4,6 +4,17 @@ Newest first.
 
 ## October 2026
 
+**react-chat #23: the chat can live at /chat, ready for the website's server** · [PR #23](https://github.com/travis-horton/react-chat/pull/23) · merged 26.1010.1401 · v1.2.0
+- **[Served under a path](https://github.com/travis-horton/react-chat/commit/a488158)** · merged 26.1010.1401
+  New: the chat can be started under an address like /chat/, so it can sit inside a bigger website; started the old way it still answers at the top, exactly as before.
+  Try it: open Terminal and paste
+      cd ~/code/react-chat && npm install && BASE_PATH=/chat PORT=8081 npm start
+  then open http://localhost:8081/chat/ in two browser windows and join with a different name in each.
+- **[Packaged to run on a server](https://github.com/travis-horton/react-chat/commit/a488158)** · merged 26.1010.1401
+  Behind the scenes: added the recipe that packages the chat as a self-contained program for the website's server, running without administrator rights.
+- **[Limits against flooding](https://github.com/travis-horton/react-chat/commit/a488158)** · merged 26.1010.1401
+  New: names are at most 24 characters and messages at most 500; anyone sending more than 5 messages in 5 seconds has the extra ones dropped; only the newest 50 messages are remembered (the page still shows 20). Nothing is read or judged, only counted, and the chat is still emptied whenever the server restarts.
+
 **react-chat #22: the chat page works again** · [PR #22](https://github.com/travis-horton/react-chat/pull/22) · merged 26.1010.1333 · v1.1.0
 - New: the chat page is connected to the chat server again, for the first time since 18.1118. You type a name to join (a name someone is already using is refused with "name taken, try another"), see who's here, and every message you send shows up on everyone's page, newest first, along with a note when someone leaves.
   Try it: open Terminal and paste

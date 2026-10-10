@@ -1,5 +1,8 @@
 let root = document.getElementById('root');
-let socket = io();
+// The page may live under a path (www.travish.com/chat/) or at the root
+// (localhost:8081/); its live connection lives beside it either way.
+let base = window.location.pathname.replace(/\/[^/]*$/, '');
+let socket = io({path: base + '/socket.io'});
 
 function clock(time) {
 	return new Date(time).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false});
@@ -30,7 +33,7 @@ class TextForm extends React.Component {
 			<form onSubmit={this.handleSubmit}>
 				<label>
 					{this.props.label}
-					<input type="text" value={this.state.value} onChange={this.handleChange} autoFocus />
+					<input type="text" value={this.state.value} onChange={this.handleChange} maxLength={this.props.maxLength} autoFocus />
 				</label>
 				<input type="submit" value={this.props.button} />
 			</form>
@@ -106,8 +109,8 @@ class App extends React.Component {
 				<h2>who's here</h2>
 				<UserList users={this.state.users} />
 				{me
-					? <TextForm key="say" label={`${me.name} says: `} button="Send" onSubmit={this.say} />
-					: <TextForm key="join" label="your name: " button="Join" onSubmit={this.join} />}
+					? <TextForm key="say" label={`${me.name} says: `} button="Send" maxLength={500} onSubmit={this.say} />
+					: <TextForm key="join" label="your name: " button="Join" maxLength={24} onSubmit={this.join} />}
 				<p className="error">{this.state.error}</p>
 				<ChatHistory chats={chats} />
 			</div>

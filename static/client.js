@@ -1,70 +1,58 @@
 let root = document.getElementById('root');
+let socket = io();
 
-class UserInput extends React.Component {
+function clock(time) {
+	return new Date(time).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false});
+}
+
+class TextForm extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {value: ''};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleChange(e) {
-
+		this.setState({value: e.target.value});
 	}
 
 	handleSubmit(e) {
-		alert('good work');
+		e.preventDefault();
+		let value = this.state.value.trim();
+		if (value === '') {return};
+		this.props.onSubmit(value);
+		this.setState({value: ''});
 	}
 
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<label>
-					you say:
-					<input type="text" value={this.props.value} onChange={this.HandleChange} />
+					{this.props.label}
+					<input type="text" value={this.state.value} onChange={this.handleChange} autoFocus />
 				</label>
-				<input type="submit" value="Submit" />
+				<input type="submit" value={this.props.button} />
 			</form>
 		)
 	}
 }
 
 function ChatHistory(props) {
-	const chats = props.chats;
-	const listChats = chats.map((chat) =>
-		<li key={chat.date}>
-			{chat.text}
+	const listChats = props.chats.map((chat, i) =>
+		<li key={i}>
+			{`${clock(chat.timeStamp)} ${chat.user}: ${chat.body}`}
 		</li>
 	);
-	console.log(listChats);
 	return (
 		<ul>{listChats}</ul>
 	)
 }
 
-let oldChats = [
-	{date: (new Date(Date.now())), text: "hi, this is travis"}
-]
-
-class ChatBox extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return (
-			<div>
-				<UserInput value="" />
-				<ChatHistory chats={oldChats} />
-			</div>
-		)
-	}
-}
-
 function UserList(props) {
-	const users = props.users;
-	const listUsers = users.map((user) =>
+	const listUsers = props.users.map((user) =>
 		<li key={user.id}>
-			{user.handle + " " + user.joinTime}
+			{user.name + " (joined " + clock(user.joinTime) + ")"}
 		</li>
 	);
 	return (
@@ -72,32 +60,56 @@ function UserList(props) {
 	)
 }
 
-class UserBox extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return (
-			<UserList users={this.props.users} />
-		)
-	}
-}
-
-let allUsers = [
-	{id: 0, handle: 'kiddspazz', joinTime: "10:30pm"}
-]
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {users: [], messages: [], notices: [], wantedName: null, error: ''};
+		this.join = this.join.bind(this);
+		this.say = this.say.bind(this);
+	}
+
+	componentDidMount() {
+		socket.on('status', (users) => this.setState({users: users}));
+		socket.on('message', (data) => {
+			if (Array.isArray(data)) {
+				this.setState({messages: data});
+			} else {
+				let notice = {body: data, user: 'THE SERVER', timeStamp: new Date().toISOString()};
+				this.setState({notices: [notice].concat(this.state.notices)});
+			}
+		});
+		// after a dropped connection the server has forgotten us: join again
+		socket.on('connect', () => {
+			if (this.state.wantedName) {this.join(this.state.wantedName)};
+		});
+	}
+
+	join(name) {
+		this.setState({wantedName: name, error: ''});
+		// the server only answers when the name is refused
+		socket.emit('message', {name: name}, (error) => {
+			this.setState({wantedName: null, error: `${error}try another`});
+		});
+	}
+
+	say(text) {
+		socket.emit('message', text);
 	}
 
 	render() {
+		let me = this.state.users.find((user) => user.id === socket.id);
+		let chats = this.state.messages.concat(this.state.notices)
+			.sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp));
+
 		return (
 			<div>
-				<UserBox users={allUsers} />
-				<ChatBox />
+				<h2>who's here</h2>
+				<UserList users={this.state.users} />
+				{me
+					? <TextForm key="say" label={`${me.name} says: `} button="Send" onSubmit={this.say} />
+					: <TextForm key="join" label="your name: " button="Join" onSubmit={this.join} />}
+				<p className="error">{this.state.error}</p>
+				<ChatHistory chats={chats} />
 			</div>
 		)
 	}

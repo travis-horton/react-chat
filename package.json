@@ -1,6 +1,6 @@
 {
   "name": "chatreact",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "building a chat server/client with react",
   "main": "server.js",
   "scripts": {

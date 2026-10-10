@@ -4,6 +4,9 @@ Newest first.
 
 ## October 2026
 
+**react-chat #17: the project's past, written down** · [PR #17](https://github.com/travis-horton/react-chat/pull/17) · merged 26.1010.1210 · v1.0.2
+- Behind the scenes: the history file now covers the whole project, from its first version to 26.1010, not just today's changes.
+
 **react-chat #10: the stale copy of the borrowed packages is gone** · [PR #10](https://github.com/travis-horton/react-chat/pull/10) · merged 26.1010.1153 · v1.0.1
 - Behind the scenes: the project no longer stores its downloaded packages (about 5,600 files of the old, pre-update versions); they are rebuilt from the package list on install, so the chat now runs on the versions the 26.1010 security update chose.
 

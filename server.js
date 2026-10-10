@@ -1,11 +1,11 @@
 #!/user/bin/env nodejs
 const http = require('http');
-const socketIO = require('socket.io');
+const { Server } = require('socket.io');
 const express = require('express');
 
 const app = express();
 const server = http.Server(app);
-const port = 80;
+const port = process.env.PORT || 80;
 
 server.listen(port, function() {
 	console.log(`Chat server listening on ${port}`);
@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });
 
-let io = socketIO(server);
+let io = new Server(server);
 let users = [];
 let messages = [];
 

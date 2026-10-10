@@ -45,7 +45,7 @@ function send(data, socket, fn) {
 
 	if (data.name) {
 		if (!(uniqueName(data.name, users))) {
-			fn('name taken, ');
+			if (fn) {fn('name taken, ')};
 			return;
 		}
 
@@ -59,6 +59,9 @@ function send(data, socket, fn) {
 			return;
 		}
 	};
+
+	// a message from someone who hasn't joined yet has no name to go with it
+	if (!user) {return};
 
 	if (data.length > 0) {
 		messages.unshift({

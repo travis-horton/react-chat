@@ -14,7 +14,7 @@ Newest first.
 - Behind the scenes: the project no longer stores its downloaded packages (about 5,600 files of the old, pre-update versions); they are rebuilt from the package list on install, so the chat now runs on the versions the 26.1010 security update chose.
 
 **react-chat #9: security updates for the borrowed building blocks, in one go** · [PR #9](https://github.com/travis-horton/react-chat/pull/9) · merged 26.1010.1150 · v1.0.0
-- Behind the scenes: brought the chat app's web server and live-connection library, and the smaller pieces they rely on, up to their makers' patched versions, replacing 5 separate automatic update requests. Known security warnings drop from 81 to 49, and joining the chat and sending a message work the same as before. (Later corrected on 26.1010: the chat server itself still handles joining and messages the same way, but the chat page has not been connected to it since 18.1118, so a message can't actually be sent from the page.)
+- Behind the scenes: brought the chat app's web server and live-connection library, and the smaller pieces they rely on, up to their makers' patched versions, replacing 5 separate automatic update requests. Known security warnings drop from 81 to 49, and joining the chat and sending a message work the same as before. (Later corrected on 26.1010: the chat server itself still handles joining and messages the same way, but the chat page has not been connected to it since 18.1118, so a message can't actually be sent from the page.) (Later fixed on 26.1010, in react-chat #22: the page is connected again.)
   Behind the scenes: the project now keeps a plain-language history that adds an entry by itself each time a change is merged.
 
 ## December 2019
@@ -29,7 +29,7 @@ Newest first.
 
 **The chat page rebuilt in React, with sample data** · [commit](https://github.com/travis-horton/react-chat/commit/b945a08) · merged 18.1118.1610 · v0.3.0
 - **[Chat layout](https://github.com/travis-horton/react-chat/commit/b945a08)** · merged 18.1118.1610
-  New: the page now draws, in React, the shape of the new chat: a list of who's online (one sample user, "kiddspazz", joined at 10:30pm), a "you say:" box with a Submit button, and one sample message, "hi, this is travis". It isn't connected to the chat server, so nothing you type is sent; Submit only pops up "good work". The page's colors-and-layout file was deleted, so it shows in the browser's plain default style.
+  New: the page now draws, in React, the shape of the new chat: a list of who's online (one sample user, "kiddspazz", joined at 10:30pm), a "you say:" box with a Submit button, and one sample message, "hi, this is travis". It isn't connected to the chat server, so nothing you type is sent; Submit only pops up "good work". The page's colors-and-layout file was deleted, so it shows in the browser's plain default style. (Later replaced on 26.1010 by react-chat #22: the sample user and message are gone, and the page now joins the real chat and sends and shows real messages.)
 - **[Server address](https://github.com/travis-horton/react-chat/commit/b945a08)** · merged 18.1118.1610
   Breaking: the server now answers on the standard web port, 80, instead of 8081, so the old address with ":8081" stopped working. On most computers, starting it on port 80 needs administrator rights.
 

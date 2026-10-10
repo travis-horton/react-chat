@@ -4,6 +4,12 @@ Newest first.
 
 ## October 2026
 
+**react-chat #22: the chat page works again** · [PR #22](https://github.com/travis-horton/react-chat/pull/22) · merged 26.1010.1333 · v1.1.0
+- New: the chat page is connected to the chat server again, for the first time since 18.1118. You type a name to join (a name someone is already using is refused with "name taken, try another"), see who's here, and every message you send shows up on everyone's page, newest first, along with a note when someone leaves.
+  Try it: open Terminal and paste
+      cd ~/code/react-chat && npm install && PORT=8081 npm start
+  then open http://localhost:8081 in two browser windows and join with a different name in each.
+
 **react-chat #21: the chat's live-connection library brought up to date** · [PR #21](https://github.com/travis-horton/react-chat/pull/21) · merged 26.1010.1329 · v1.0.4
 - Behind the scenes: moved the library that carries messages between people in the chat to its current major version, which clears the last known security warnings (8 to 0); joining, the "name taken" refusal and passing messages along all work the same as before. The chat server can also now be started on any port, still using the standard web port, 80, unless told otherwise, and two unused copies of React were taken off the package list.
 

@@ -15,8 +15,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "install": "^0.12.1",
-    "npm": "^6.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "socket.io": "^2.5.0"

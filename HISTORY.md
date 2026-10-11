@@ -4,6 +4,10 @@ Newest first.
 
 ## October 2026
 
+**react-chat #24: the chat starts on the website's server** · [PR #24](https://github.com/travis-horton/react-chat/pull/24) · merged 26.1010.2052 · v1.2.1
+- **[Packaged on a base the server can run](https://github.com/travis-horton/react-chat/commit/ebdf835)** · merged 26.1010.2052
+  Fixed: on the website's server the chat crashed the instant it started and kept restarting, so the page at /chat/ showed an error. It is now packaged on a different base that the server's older hosting software runs without trouble; nothing about the chat itself changed.
+
 **react-chat #23: the chat can live at /chat, ready for the website's server** · [PR #23](https://github.com/travis-horton/react-chat/pull/23) · merged 26.1010.1401 · v1.2.0
 - **[Served under a path](https://github.com/travis-horton/react-chat/commit/a488158)** · merged 26.1010.1401
   New: the chat can be started under an address like /chat/, so it can sit inside a bigger website; started the old way it still answers at the top, exactly as before.

@@ -4,6 +4,9 @@ Newest first.
 
 ## October 2026
 
+**react-chat #25: the change log catches up on entries it missed** · [PR #25](https://github.com/travis-horton/react-chat/pull/25) · merged 26.1015.0728 · v1.2.2
+- Behind the scenes: the robot that writes this file after each change now also writes in any earlier finished change it missed, oldest first, with a "recorded late" note when it is more than an hour late. If GitHub won't answer one of its lookups, it skips only that one, records the newest change anyway, and fills the gap on a later run.
+
 **react-chat #24: the chat starts on the website's server** · [PR #24](https://github.com/travis-horton/react-chat/pull/24) · merged 26.1010.2052 · v1.2.1
 - **[Packaged on a base the server can run](https://github.com/travis-horton/react-chat/commit/ebdf835)** · merged 26.1010.2052
   Fixed: on the website's server the chat crashed the instant it started and kept restarting, so the page at /chat/ showed an error. It is now packaged on a different base that the server's older hosting software runs without trouble; nothing about the chat itself changed.
